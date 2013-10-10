@@ -16,4 +16,5 @@ Graphic : Paint(dot)Net , Gimp
 
 Are we going to stream something like others?
 =============
-I dont think so we strema a log. If one of us both are going to stream something i'll add the cast here later :)
+I dont think so we stream a log of our dev-sessions. 
+If one of us both are going to stream something i'll add the cast here later :)
