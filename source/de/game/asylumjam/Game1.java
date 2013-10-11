@@ -38,7 +38,6 @@ public class Game1 extends Game implements ApplicationListener {
         spriteBatch = new SpriteBatch();
 
         camera = new OrthographicCamera(width,height);
-        //camera.lookAt(-(height / 2.0f),-(width / 2.0f),0.0f);
         camera.position.set(width / 2, height / 2, 0);
         glViewport = new Rectangle(0,0,width,height);
 

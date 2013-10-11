@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import de.game.asylumjam.Game1;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Map {
@@ -16,20 +15,20 @@ public class Map {
     private ArrayList<Texture> textures = new ArrayList<Texture>();
 
     private int[][] map = new int[][]  {
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,1,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,2,0},
+    {0,1,1,0,0,1,1,1,1,1,0,0,1,1,0},
+    {0,1,1,1,1,1,1,1,0,1,1,1,1,1,0},
     {0,0,0,0,0,1,1,1,0,0,0,0,0,1,0},
-    {0,0,0,0,0,1,1,1,0,0,0,0,0,1,0},
-    {0,0,0,0,0,1,1,1,0,0,0,0,0,1,0},
-    {0,0,0,0,0,1,1,1,0,0,0,0,0,1,0},
-    {0,0,0,0,0,1,1,1,0,0,0,0,0,1,0},
-    {0,0,0,0,0,1,1,1,0,0,0,0,0,1,0},
-    {0,0,0,0,0,1,1,1,0,0,0,0,0,1,0},
-    {0,0,0,1,1,1,1,1,0,0,0,0,0,0,0},
-    {0,0,0,1,0,1,1,1,0,0,0,0,0,0,0},
-    {0,0,0,0,0,1,1,1,0,0,0,0,0,0,0},
-    {0,1,1,1,0,0,0,1,0,0,0,0,0,0,0},
-    {0,1,1,1,1,1,1,1,0,0,0,0,0,0,0},
-    {0,1,1,1,0,1,1,1,0,0,0,0,0,0,0},
+    {0,1,1,1,0,1,1,1,0,1,1,1,1,1,0},
+    {0,1,1,1,0,1,1,1,0,1,1,0,0,0,0},
+    {0,1,0,0,0,1,1,1,0,0,0,0,1,1,0},
+    {0,1,0,1,0,1,1,1,1,1,1,1,1,1,0},
+    {0,1,1,1,1,1,1,1,0,1,0,1,1,1,0},
+    {0,1,0,1,0,1,1,1,0,1,0,0,0,1,0},
+    {0,0,0,0,0,1,1,1,0,1,1,0,0,0,0},
+    {0,1,1,1,0,0,0,1,0,0,1,1,1,1,0},
+    {0,1,1,1,1,1,1,1,0,0,0,0,1,1,0},
+    {0,1,1,1,0,1,1,1,0,1,1,1,1,0,0},
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
 
 
@@ -45,6 +44,7 @@ public class Map {
             for(int y = 0; y < height; y++)
             {
                 spriteBatch.begin();
+                spriteBatch.enableBlending();
                 spriteBatch.setProjectionMatrix(Game1.camera.projection);
                 spriteBatch.draw(textures.get(map[y][x]), ((x * 32) + 160) - Game1.camera.position.x , ((y * 32) + 55) - Game1.camera.position.y);
                 spriteBatch.end();
@@ -58,6 +58,7 @@ public class Map {
         {
             textures.add(new Texture("Texturen/wall.png"));
             textures.add(new Texture("Texturen/floor.png"));
+            textures.add(new Texture("Texturen/door.png"));
         }
         catch(Exception e)
         {
