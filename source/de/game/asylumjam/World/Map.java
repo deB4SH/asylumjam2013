@@ -65,4 +65,9 @@ public class Map {
             e.printStackTrace();
         }
     }
+
+    public int[][] getMap()
+    {
+        return this.map;
+    }
 }

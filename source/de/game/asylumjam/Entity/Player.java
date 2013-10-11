@@ -3,13 +3,18 @@ package de.game.asylumjam.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
+import de.game.asylumjam.Misc.GLOBAL;
+import de.game.asylumjam.World.Map;
 
 public class Player extends Entity {
 
-    public Player(Vector2 startPos, int startHealth)
+    private Map world;
+
+    public Player(Vector2 startPos, int startHealth, Map map)
     {
         super.setPosition(startPos);
         super.setHealth(startHealth);
+        this.world = map;
     }
 
 
@@ -35,40 +40,48 @@ public class Player extends Entity {
         boolean dPressed = Gdx.input.isKeyPressed(Input.Keys.D);
 
         //Update User Position
-        if(wPressed)
+        if(wPressed && !collisionTest(super.getPosition().add(0,+1)))
         {
-            //TODO: Collision Detection
-
-
-
-            super.setPosition(super.getPosition().add(0,-1));
-        }
-        if(aPressed)
-        {
-            //TODO: Collision Detection
-
-            super.setPosition(super.getPosition().add(-1,0));
-        }
-        if(sPressed)
-        {
-            //TODO: Collision Detection
-
             super.setPosition(super.getPosition().add(0,+1));
         }
-        if(dPressed)
-        {
-            //TODO: Collision Detection
 
-            super.setPosition(super.getPosition().add(+1,0));
+        if(aPressed && !collisionTest(super.getPosition().add(+1,0))
+        {
+           super.setPosition(super.getPosition().add(+1,0));
+        }
+
+        if(sPressed && !collisionTest(super.getPosition().add(0,-1)))
+        {
+            super.setPosition(super.getPosition().add(0,-1));
+        }
+
+        if(dPressed && !collisionTest(super.getPosition().add(-1,0)))
+        {
+            super.setPosition(super.getPosition().add(-1,0));
         }
     }
 
 
-   private void getMouseUpdate()
-   {
+    private void getMouseUpdate()
+    {
         //Updating Facing Vector
        super.setFacing(new Vector2(Gdx.input.getX(),Gdx.input.getY()));
 
+        //Calc Rotation-Angle
 
-   }
+
+    }
+
+    private boolean collisionTest(Vector2 tile)
+    {
+        if(this.world.getMap()[(int)tile.x][(int)tile.y] == 0)
+            return false;   //player is not allowed to move on this tile
+        else
+            return true;    //player can move on this tile
+    }
+
+    private void calcTile()
+    {
+        Vector2 playerOnTile = new Vector2(super.getPosition().x / GLOBAL.Tilesize, super.getPosition().y / GLOBAL.Tilesize);
+    }
 }
