@@ -10,7 +10,7 @@ public class Root {
      {
          LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
          cfg.title = "LetsJam";
-         cfg.useGL20 = true;
+         cfg.useGL20 = false;
          cfg.width = 800;
          cfg.height = 600;
          new LwjglApplication(new Game1(),cfg);
