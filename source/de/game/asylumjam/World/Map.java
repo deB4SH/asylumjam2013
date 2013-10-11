@@ -54,8 +54,8 @@ public class Map {
     {
         try
         {
-            textures.add(new Texture("D:\\java\\LetsJam\\source\\Texturen\\wall.png"));
-            textures.add(new Texture("D:\\java\\LetsJam\\source\\Texturen\\floor.png"));
+            textures.add(new Texture("Texturen/wall.png"));
+            textures.add(new Texture("Texturen/floor.png"));
         }
         catch(Exception e)
         {
