@@ -7,7 +7,17 @@ package de.game.asylumjam.Entity;
     Credit to Oustlast Creators - this game is amazing.
  */
 
+import com.badlogic.gdx.math.Vector2;
+
 public class Walrider extends Entity {
+
+    private Player playerObj;
+
+    public Walrider(Vector2 startPos, int startHealth, Player player)
+    {
+        super.setPosition(startPos);
+        this.playerObj = player;
+    }
 
 
     @Override
