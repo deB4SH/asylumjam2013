@@ -1,6 +1,8 @@
 package de.game.asylumjam.Entity;
 
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class Entity {
@@ -15,8 +17,10 @@ public abstract class Entity {
     private int stamina;
 
     //Game Functional
-    abstract void render();
+    abstract void render(SpriteBatch spriteBatch);
     abstract void update();
+
+    private Texture texture;
 
     //Get and Set
     public Vector2 getPosition() {
@@ -57,5 +61,13 @@ public abstract class Entity {
 
     public void setStamina(int stamina) {
         this.stamina = stamina;
+    }
+
+    public Texture getTexture() {
+        return texture;
+    }
+
+    public void setTexture(Texture texture) {
+        this.texture = texture;
     }
 }

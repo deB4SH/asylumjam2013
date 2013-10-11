@@ -7,6 +7,7 @@ package de.game.asylumjam.Entity;
     Credit to Oustlast Creators - this game is amazing.
  */
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 public class Walrider extends Entity {
@@ -21,7 +22,7 @@ public class Walrider extends Entity {
 
 
     @Override
-    void render() {
+    void render(SpriteBatch spriteBatch) {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 

@@ -4,13 +4,12 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.FPSLogger;
-import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import de.game.asylumjam.Entity.Player;
 import de.game.asylumjam.World.Map;
 
 /**
@@ -31,6 +30,7 @@ public class Game1 extends Game implements ApplicationListener {
     private Rectangle glViewport;
 
     private Map map;
+    private Player player;
 
     @Override
     public void create() {
@@ -42,6 +42,7 @@ public class Game1 extends Game implements ApplicationListener {
         glViewport = new Rectangle(0,0,width,height);
 
         map  = new Map();
+        player = new Player(new Vector2(0,100),100,map,new Texture("Texturen/floor.png"));
 
     }
 
@@ -51,6 +52,7 @@ public class Game1 extends Game implements ApplicationListener {
     }
 
     private void update() {
+
         if(Gdx.input.isKeyPressed(Input.Keys.Q)) {
             camera.zoom += 0.02;
         }
@@ -70,6 +72,8 @@ public class Game1 extends Game implements ApplicationListener {
         if(Gdx.input.isKeyPressed(Input.Keys.D)) {
             camera.translate(2,0);
         }
+
+        player.update();
     }
 
     @Override
@@ -86,16 +90,16 @@ public class Game1 extends Game implements ApplicationListener {
         spriteBatch.enableBlending();
 
         map.render(spriteBatch);
+        player.render(spriteBatch);
 
 
         spriteBatch.begin();
-        spriteBatch.setProjectionMatrix(camera.projection);
+/*        spriteBatch.setProjectionMatrix(camera.projection);
 
         CharSequence text = "" + Gdx.input.getX() + " " + Gdx.input.getY();
         BitmapFont font = new BitmapFont();
         font.setColor(255,0,0,1);
-        font.draw(spriteBatch, text, Gdx.input.getX() + 20 - camera.position.x, Gdx.input.getY()- camera.position.y);
-
+        font.draw(spriteBatch, text, Gdx.input.getX() + 20 - camera.position.x, Gdx.input.getY()- camera.position.y);*/
         spriteBatch.end();
 
         fpsLogger.log();
