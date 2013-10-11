@@ -33,8 +33,8 @@ public class Map {
 
 
     public Map(){
-        textures.add(new Texture("D:\\java\\LetsJam\\source\\Texturen\\wall.png"));
-        textures.add(new Texture("D:\\java\\LetsJam\\source\\Texturen\\floor.png"));
+
+        loadTileData();
     }
 
     public void render(SpriteBatch spriteBatch){
@@ -47,6 +47,19 @@ public class Map {
                 spriteBatch.draw(textures.get(map[y][x]), (x * 32) + 160, (y * 32) + 55);
                 spriteBatch.end();
             }
+        }
+    }
+
+    public void loadTileData()
+    {
+        try
+        {
+            textures.add(new Texture("D:\\java\\LetsJam\\source\\Texturen\\wall.png"));
+            textures.add(new Texture("D:\\java\\LetsJam\\source\\Texturen\\floor.png"));
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }

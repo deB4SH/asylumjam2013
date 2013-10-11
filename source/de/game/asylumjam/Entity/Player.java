@@ -36,18 +36,39 @@ public class Player extends Entity {
 
         //Update User Position
         if(wPressed)
+        {
+            //TODO: Collision Detection
+
+
+
             super.setPosition(super.getPosition().add(0,-1));
+        }
         if(aPressed)
+        {
+            //TODO: Collision Detection
+
             super.setPosition(super.getPosition().add(-1,0));
+        }
         if(sPressed)
+        {
+            //TODO: Collision Detection
+
             super.setPosition(super.getPosition().add(0,+1));
+        }
         if(dPressed)
+        {
+            //TODO: Collision Detection
+
             super.setPosition(super.getPosition().add(+1,0));
+        }
     }
 
 
    private void getMouseUpdate()
    {
+        //Updating Facing Vector
+       super.setFacing(new Vector2(Gdx.input.getX(),Gdx.input.getY()));
+
 
    }
 }
