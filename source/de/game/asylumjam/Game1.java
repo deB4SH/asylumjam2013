@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Rectangle;
+import de.game.asylumjam.World.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -24,6 +26,9 @@ public class Game1 extends Game implements ApplicationListener {
     private OrthographicCamera camera;
     private float width = 800;
     private float height = 600;
+    private Rectangle glViewport;
+
+    private Map map;
 
     @Override
     public void create() {
@@ -31,6 +36,9 @@ public class Game1 extends Game implements ApplicationListener {
         spriteBatch = new SpriteBatch();
         camera = new OrthographicCamera(width,height);
         camera.lookAt(-(height / 2.0f),-(width / 2.0f),0.0f);
+        glViewport = new Rectangle(0,0,width,height);
+
+        map  = new Map();
 
     }
 
@@ -51,6 +59,9 @@ public class Game1 extends Game implements ApplicationListener {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         spriteBatch.enableBlending();
+
+        map.render(spriteBatch);
+
 
         spriteBatch.begin();
 
