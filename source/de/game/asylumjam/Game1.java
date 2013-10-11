@@ -42,7 +42,7 @@ public class Game1 extends Game implements ApplicationListener {
         glViewport = new Rectangle(0,0,width,height);
 
         map  = new Map();
-        player = new Player(new Vector2(0,100),100,map,new Texture("Texturen/floor.png"));
+        player = new Player(new Vector2(100,100),100,map,new Texture("Texturen/floor.png"));
 
     }
 
@@ -94,12 +94,12 @@ public class Game1 extends Game implements ApplicationListener {
 
 
         spriteBatch.begin();
-/*        spriteBatch.setProjectionMatrix(camera.projection);
+        spriteBatch.setProjectionMatrix(camera.projection);
 
         CharSequence text = "" + Gdx.input.getX() + " " + Gdx.input.getY();
         BitmapFont font = new BitmapFont();
         font.setColor(255,0,0,1);
-        font.draw(spriteBatch, text, Gdx.input.getX() + 20 - camera.position.x, Gdx.input.getY()- camera.position.y);*/
+        font.draw(spriteBatch, text, Gdx.input.getX() + 20 - camera.position.x,(Gdx.input.getY())- camera.position.y);
         spriteBatch.end();
 
         fpsLogger.log();
