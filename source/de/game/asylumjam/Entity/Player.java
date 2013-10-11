@@ -68,6 +68,10 @@ public class Player extends Entity {
        super.setFacing(new Vector2(Gdx.input.getX(),Gdx.input.getY()));
 
         //Calc Rotation-Angle
+        Vector2 standardVector = new Vector2(0,1);
+        Vector2 playerFacing = super.getFacing();
+
+
 
 
     }
