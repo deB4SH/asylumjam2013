@@ -45,7 +45,7 @@ public class Player extends Entity {
             super.setPosition(super.getPosition().add(0,+1));
         }
 
-        if(aPressed && !collisionTest(super.getPosition().add(+1,0))
+        if(aPressed && !collisionTest(super.getPosition().add(+1,0)))
         {
            super.setPosition(super.getPosition().add(+1,0));
         }

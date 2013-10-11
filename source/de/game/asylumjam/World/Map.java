@@ -4,6 +4,7 @@ package de.game.asylumjam.World;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import de.game.asylumjam.Game1;
+import de.game.asylumjam.Misc.GLOBAL;
 
 import java.util.ArrayList;
 
@@ -15,19 +16,19 @@ public class Map {
     private ArrayList<Texture> textures = new ArrayList<Texture>();
 
     private int[][] map = new int[][]  {
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,2,0},
-    {0,1,1,0,0,1,1,1,1,1,0,0,1,1,0},
-    {0,1,1,1,1,1,1,1,0,1,1,1,1,1,0},
+    {0,0,0,0,0,0,0,0,0,0,0,0,0,4,0},
+    {0,1,1,0,0,1,1,1,3,1,0,0,1,1,0},
+    {0,1,1,1,3,1,1,1,0,1,1,1,1,1,0},
     {0,0,0,0,0,1,1,1,0,0,0,0,0,1,0},
     {0,1,1,1,0,1,1,1,0,1,1,1,1,1,0},
     {0,1,1,1,0,1,1,1,0,1,1,0,0,0,0},
     {0,1,0,0,0,1,1,1,0,0,0,0,1,1,0},
-    {0,1,0,1,0,1,1,1,1,1,1,1,1,1,0},
-    {0,1,1,1,1,1,1,1,0,1,0,1,1,1,0},
+    {0,1,0,1,0,1,1,1,3,1,1,1,1,1,0},
+    {0,1,1,1,3,1,1,1,0,1,0,1,1,1,0},
     {0,1,0,1,0,1,1,1,0,1,0,0,0,1,0},
     {0,0,0,0,0,1,1,1,0,1,1,0,0,0,0},
     {0,1,1,1,0,0,0,1,0,0,1,1,1,1,0},
-    {0,1,1,1,1,1,1,1,0,0,0,0,1,1,0},
+    {0,1,1,1,3,1,1,1,0,0,0,0,1,1,0},
     {0,1,1,1,0,1,1,1,0,1,1,1,1,0,0},
     {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
 
@@ -56,9 +57,11 @@ public class Map {
     {
         try
         {
-            textures.add(new Texture("Texturen/wall.png"));
-            textures.add(new Texture("Texturen/floor.png"));
-            textures.add(new Texture("Texturen/door.png"));
+            textures.add(GLOBAL.Wall,new Texture("Texturen/wall.png"));
+            textures.add(GLOBAL.Floor,new Texture("Texturen/floor.png"));
+            textures.add(GLOBAL.Door_Horizontal,new Texture("Texturen/door_horizontal.png"));
+            textures.add(GLOBAL.Door_Vertical, new Texture("Texturen/door_vertical.png"));
+            textures.add(GLOBAL.Door_Win, new Texture("Texturen/door_win.png"));
         }
         catch(Exception e)
         {
