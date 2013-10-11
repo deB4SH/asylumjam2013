@@ -20,7 +20,6 @@ public class Walrider extends Entity {
         this.playerObj = player;
     }
 
-
     @Override
     void render(SpriteBatch spriteBatch) {
         //To change body of implemented methods use File | Settings | File Templates.
@@ -30,4 +29,8 @@ public class Walrider extends Entity {
     void update() {
         //To change body of implemented methods use File | Settings | File Templates.
     }
+
+
+
+
 }
