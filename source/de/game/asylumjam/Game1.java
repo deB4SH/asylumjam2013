@@ -46,7 +46,7 @@ public class Game1 extends Game implements ApplicationListener {
         glViewport = new Rectangle(0,0,width,height);
 
         map  = new Map();
-        player = new Player(new Vector2(200,200),100,map,new Texture("Texturen/player.png"));
+        player = new Player(new Vector2(200,200),100,map,new Texture("Texturen/player2.png"));
 
         TMXReader mapReader = new TMXReader(Gdx.files.internal(GLOBAL.Map01).toString());
 
