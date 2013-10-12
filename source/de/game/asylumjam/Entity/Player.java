@@ -2,6 +2,7 @@ package de.game.asylumjam.Entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -28,6 +29,7 @@ public class Player extends Entity {
 
         spriteBatch.begin();
         spriteBatch.setProjectionMatrix(Game1.camera.projection);
+        spriteBatch.enableBlending();
 
         double v1 = (- Gdx.input.getY() + 600 ) - (getPosition().y + 55 );
         double v2 = (Gdx.input.getX()) - (getPosition().x + 160 );
@@ -37,6 +39,7 @@ public class Player extends Entity {
                 16,16,32,32,1,1,rotation-90,0,0,32,32,false,false);
 
         spriteBatch.end();
+
     }
 
     @Override

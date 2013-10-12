@@ -48,9 +48,11 @@ public class Map {
                 spriteBatch.begin();
 
                 spriteBatch.enableBlending();
+                spriteBatch.setColor(new Color(20,20,20,0.09f));
 
                 spriteBatch.setProjectionMatrix(Game1.camera.projection);
                 spriteBatch.draw(textures.get(map[y][x]), ((x * 32) + 160) - Game1.camera.position.x , ((y * 32) + 55) - Game1.camera.position.y);
+                spriteBatch.setColor(Color.WHITE);
 
                 spriteBatch.end();
             }
