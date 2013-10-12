@@ -41,13 +41,13 @@ public class TMXReader {
     {
         //Get all Layers in the Tiled-XML-Export
         List<Element> Layer = doc.getRootElement().getChildren("layer");
+        int listPTR = 0;
 
         try{
             for(Element e: Layer)
             {
                 mapLayer.add(new Layer(e.getAttribute("height").getIntValue(),e.getAttribute("width").getIntValue(),e.getAttribute("name").toString()));
-
-                generateMapArray(e);
+                mapLayer.get(listPTR).fillTileData(generateMapArray(e));
             }
         }
         catch (Exception e)
@@ -59,19 +59,31 @@ public class TMXReader {
 
     }
 
-    private int[][] generateMapArray(Element e) throws DataConversionException {
+    private int[] generateMapArray(Element e) throws DataConversionException {
 
         Element Data = (Element)e.getContent(1);
-        int[][] storage = new int[e.getAttribute("height").getIntValue()][e.getAttribute("width").getIntValue()];
+        int[] storage = new int[e.getAttribute("height").getIntValue()*e.getAttribute("width").getIntValue()];
+        int storagePtr = 0;
 
         for(int i=0; i < Data.getContentSize(); i++)
         {
-
+            if(Data.getContent(i).getValue().contains("\n"))
+            {
+                //new line (why does the SAXBuilder reads a newline every time. O,o)
+            }
+            else
+            {
+                Element tile = (Element)Data.getContent(i);
+                storage[storagePtr] = tile.getAttribute("gid").getIntValue();
+                storagePtr++;
+            }
         }
 
-        int a = 0;
+        //Clean UP
+        Data = null;
+        storagePtr = 0;
 
-        return new int[5][5];
+        return storage;
     }
 
 
