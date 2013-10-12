@@ -42,7 +42,7 @@ public class Game1 extends Game implements ApplicationListener {
         glViewport = new Rectangle(0,0,width,height);
 
         map  = new Map();
-        player = new Player(new Vector2(100,100),100,map,new Texture("Texturen/wall.png"));
+        player = new Player(new Vector2(200,200),100,map,new Texture("Texturen/player.png"));
 
     }
 
@@ -55,12 +55,14 @@ public class Game1 extends Game implements ApplicationListener {
 
         if(Gdx.input.isKeyPressed(Input.Keys.Q)) {
             camera.zoom += 0.02;
+            camera.zoom = camera.zoom > 1 ? camera.zoom = 1.0f : camera.zoom;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.E)) {
             camera.zoom -= 0.02;
-        }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.W)) {
+        }
+/*
+       if(Gdx.input.isKeyPressed(Input.Keys.W)) {
             camera.translate(0,2);
         }
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
@@ -72,7 +74,7 @@ public class Game1 extends Game implements ApplicationListener {
         if(Gdx.input.isKeyPressed(Input.Keys.D)) {
             camera.translate(2,0);
         }
-
+  */
         player.update();
     }
 

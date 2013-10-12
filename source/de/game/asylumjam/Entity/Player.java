@@ -29,18 +29,12 @@ public class Player extends Entity {
         spriteBatch.begin();
         spriteBatch.setProjectionMatrix(Game1.camera.projection);
 
-        CharSequence text = "" + Game1.camera.position.x + Game1.camera.position.y;
-
-        BitmapFont font = new BitmapFont();
-        font.setColor(255,0,0,1);
-        font.draw(spriteBatch, text, getPosition().x - Game1.camera.position.x + 32 , getPosition().y - Game1.camera.position.y);
-
-        double v1 = (- Gdx.input.getY() + 600) - (getPosition().y );
-        double v2 = (Gdx.input.getX()) - (getPosition().x );
+        double v1 = (- Gdx.input.getY() + 600 ) - (getPosition().y + 55 );
+        double v2 = (Gdx.input.getX()) - (getPosition().x + 160 );
         float rotation = (float)Math.toDegrees(Math.atan2( v1 ,v2 ));
 
-        spriteBatch.draw(super.getTexture(), getPosition().x - Game1.camera.position.x, getPosition().y - Game1.camera.position.y,
-                16,16,32,32,1,1,rotation,0,0,32,32,false,false);
+        spriteBatch.draw(super.getTexture(), getPosition().x - Game1.camera.position.x + 160, getPosition().y - Game1.camera.position.y + 55,
+                16,16,32,32,1,1,rotation-90,0,0,32,32,false,false);
 
         spriteBatch.end();
     }
@@ -48,10 +42,10 @@ public class Player extends Entity {
     @Override
     public void update() {
 
-    //    getKeyUpdate();
+        getKeyUpdate();
 
     }
-    /*
+
 
     private void getKeyUpdate()
     {
@@ -62,54 +56,43 @@ public class Player extends Entity {
         boolean dPressed = Gdx.input.isKeyPressed(Input.Keys.D);
 
         //Update User Position
-        if(wPressed && !collisionTest(super.getPosition().add(0,+1)))
-        {
-            super.setPosition(super.getPosition().add(0,+1));
-        }
-
-        if(aPressed && !collisionTest(super.getPosition().add(+1,0)))
-        {
-           super.setPosition(super.getPosition().add(+1,0));
-        }
-
-        if(sPressed && !collisionTest(super.getPosition().add(0,-1)))
+        if(sPressed && !collisionTest(new Vector2(super.getPosition().x + 1, super.getPosition().y -1)) &&
+                !collisionTest(new Vector2(super.getPosition().x + super.getTexture().getWidth()-1, super.getPosition().y -1)))
         {
             super.setPosition(super.getPosition().add(0,-1));
         }
 
-        if(dPressed && !collisionTest(super.getPosition().add(-1,0)))
+        if(aPressed && !collisionTest(new Vector2(super.getPosition().x-1, super.getPosition().y )) &&
+                !collisionTest(new Vector2(super.getPosition().x-1, super.getPosition().y + super.getTexture().getHeight())))
         {
-            super.setPosition(super.getPosition().add(-1,0));
+           super.setPosition(super.getPosition().add(-1,0));
         }
-    }
 
+        if(wPressed && !collisionTest(new Vector2(super.getPosition().x +1, super.getPosition().y + super.getTexture().getHeight() +1)) &&
+                !collisionTest(new Vector2(super.getPosition().x + super.getTexture().getWidth() -1, super.getPosition().y + super.getTexture().getHeight() +1)))
+        {
+            super.setPosition(super.getPosition().add(0,+1));
+        }
 
-    private void getMouseUpdate()
-    {
-        //Updating Facing Vector
-       super.setFacing(new Vector2(Gdx.input.getX(),Gdx.input.getY()));
-
-        //Calc Rotation-Angle
-        Vector2 standardVector = new Vector2(0,1);
-        Vector2 playerFacing = super.getFacing();
-
-
-
-
-
-
+        if(dPressed && !collisionTest(new Vector2(super.getPosition().x + super.getTexture().getWidth() + 1, super.getPosition().y )) &&
+                !collisionTest(new Vector2(super.getPosition().x + super.getTexture().getWidth() + 1, super.getPosition().y + super.getTexture().getHeight())))
+        {
+            super.setPosition(super.getPosition().add(+1,0));
+        }
     }
 
     private boolean collisionTest(Vector2 tile)
     {
-        if(this.world.getMap()[(int)tile.x][(int)tile.y] == 0)
-            return false;   //player is not allowed to move on this tile
+        //System.out.println("prüf den dreck " + tile.x + " " + tile.y);
+        //System.out.println("hier steht der scheiß " + super.getPosition().x + " " + super.getPosition().y);
+        if(this.world.getMap()[(int)calcTile(tile).y][(int)calcTile(tile).x] == 0)
+            return true;   //player is allowed to move on this tile
         else
-            return true;    //player can move on this tile
+            return false;    //player can not move on this tile
     }
 
-    private void calcTile()
+    private Vector2 calcTile(Vector2 position)
     {
-        Vector2 playerOnTile = new Vector2(super.getPosition().x / GLOBAL.Tilesize, super.getPosition().y / GLOBAL.Tilesize);
-    } */
+        return new Vector2 (position.x / GLOBAL.Tilesize, position.y / GLOBAL.Tilesize);
+    }
 }
