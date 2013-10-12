@@ -1,6 +1,7 @@
 package de.game.asylumjam.World;
 
 import com.badlogic.gdx.math.Vector2;
+import org.jdom2.Attribute;
 
 public class Layer {
 
@@ -8,7 +9,7 @@ public class Layer {
     private int[][] tileData;
     private String layerName;
 
-    public Layer(int height, int width, String layerName)
+    public Layer(int height, int width, Attribute layerName)
     {
         this.height = height;
         this.width = width;
