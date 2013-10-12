@@ -47,4 +47,8 @@ public class Layer {
         return this.tileData[(int)vec.x][(int)vec.y];
     }
 
+    public String getLayerName()
+    {
+        return this.layerName;
+    }
 }

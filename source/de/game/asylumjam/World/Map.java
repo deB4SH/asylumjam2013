@@ -21,24 +21,6 @@ public class Map {
 
     private ArrayList<Texture> textures = new ArrayList<Texture>();
 
-    private int[][] map = new int[][]  {
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,4,0},
-    {0,1,1,0,0,1,1,1,3,1,0,0,1,1,0},
-    {0,1,1,1,3,1,1,1,0,1,1,1,1,1,0},
-    {0,0,0,0,0,1,1,1,0,0,0,0,0,1,0},
-    {0,1,1,1,0,1,1,1,0,1,1,1,1,1,0},
-    {0,1,1,1,0,1,1,1,0,1,1,0,0,0,0},
-    {0,1,0,0,0,1,1,1,0,0,0,0,1,1,0},
-    {0,1,0,1,0,1,1,1,3,1,1,1,1,1,0},
-    {0,1,1,1,3,1,1,1,0,1,0,1,1,1,0},
-    {0,1,0,1,0,1,1,1,0,1,0,0,0,1,0},
-    {0,0,0,0,0,1,1,1,0,1,1,0,0,0,0},
-    {0,1,1,1,0,0,0,1,0,0,1,1,1,1,0},
-    {0,1,1,1,3,1,1,1,0,0,0,0,1,1,0},
-    {0,1,1,1,0,1,1,1,0,1,1,1,1,0,0},
-    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}};
-
-
     public Map(){
 
         mapReader = new TMXReader(Gdx.files.internal(GLOBAL.Map01).toString());
@@ -48,20 +30,25 @@ public class Map {
 
     public void render(SpriteBatch spriteBatch){
 
-        for(int x = 0; x < width; x++)
+        for(Layer e: mapReader.getMapLayer())
         {
-            for(int y = 0; y < height; y++)
+            System.out.println(e.getLayerName());
+
+            for(int x = 0; x < width; x++)
             {
-                spriteBatch.begin();
+                for(int y = 0; y < height; y++)
+                {
+                    spriteBatch.begin();
 
-                spriteBatch.enableBlending();
-                spriteBatch.setColor(new Color(20,20,20,1f));
+                    //spriteBatch.enableBlending();
+                    //spriteBatch.setColor(new Color(20,20,20,1f));
 
-                spriteBatch.setProjectionMatrix(Game1.camera.projection);
-                spriteBatch.draw(textures.get(map[y][x]), ((x * 32) + 160) - Game1.camera.position.x , ((y * 32) + 55) - Game1.camera.position.y);
-                spriteBatch.setColor(Color.WHITE);
+                    spriteBatch.setProjectionMatrix(Game1.camera.projection);
+                    spriteBatch.draw(textures.get(e.getSingleTile(x,y)), ((x * 32) + 160) - Game1.camera.position.x , ((y * 32) + 55) - Game1.camera.position.y);
+                    spriteBatch.setColor(Color.WHITE);
 
-                spriteBatch.end();
+                    spriteBatch.end();
+                }
             }
         }
     }
@@ -99,8 +86,8 @@ public class Map {
         }
     }
 
-    public int[][] getMap()
+    public ArrayList<Layer> getMap()
     {
-        return this.map;
+        return this.mapReader.getMapLayer();
     }
 }
