@@ -1,9 +1,7 @@
 package de.game.asylumjam.World;
 
 import java.util.ArrayList;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
+import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.Element;
@@ -17,6 +15,7 @@ public class TMXReader {
     public TMXReader(String map) {
 
         initTask(map);
+        readXML();
 
     }
 
@@ -33,12 +32,29 @@ public class TMXReader {
         }
     }
 
-    public void readXML()
+    private void readXML()
     {
-        Element element = doc.getRootElement();
+        //Get all Layers in the Tiled-XML-Export
+        List<Element> Layer = doc.getRootElement().getChildren("layer");
 
         int a = 0;
+
+        for(Element e: Layer)
+        {
+            mapLayer.add(new Layer(Integer.parseInt(e.getAttribute("height").toString()),Integer.parseInt(e.getAttribute("width").toString()),e.getAttribute("name")));
+
+        }
+
     }
+
+    private int[][] generateMapArray(Element e)
+    {
+
+
+
+        return new int[5][5];
+    }
+
 
     public ArrayList<Layer> getMapLayer() {
         return mapLayer;
