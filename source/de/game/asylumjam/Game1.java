@@ -67,6 +67,7 @@ public class Game1 extends Game implements ApplicationListener {
             camera.zoom -= 0.02;
 
         }
+
 /*
        if(Gdx.input.isKeyPressed(Input.Keys.W)) {
             camera.translate(0,2);
@@ -114,7 +115,7 @@ public class Game1 extends Game implements ApplicationListener {
 
     }
     @Override
-    public void pause() {
+    public void pause()  {
 
     }
     @Override
