@@ -134,10 +134,15 @@ public class Player extends Entity {
     {
         //System.out.println("prüf den dreck " + tile.x + " " + tile.y);
         //System.out.println("hier steht der scheiß " + super.getPosition().x + " " + super.getPosition().y);
+
+        /*
         if(this.world.getMap()[(int)calcTile(tile).y][(int)calcTile(tile).x] == 0)
             return true;   //player is allowed to move on this tile
         else
             return false;    //player can not move on this tile
+            */
+
+        return false;
     }
 
     private Vector2 calcTile(Vector2 position)
