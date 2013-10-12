@@ -46,7 +46,7 @@ public class Game1 extends Game implements ApplicationListener {
         glViewport = new Rectangle(0,0,width,height);
 
         map  = new Map();
-        player = new Player(new Vector2(200,200),100,map,new Texture("Texturen/player2.png"));
+        player = new Player(new Vector2(200,200),100,map,new Texture("Texturen/licht1.png"));
 
         TMXReader mapReader = new TMXReader(Gdx.files.internal(GLOBAL.Map01).toString());
 
@@ -68,7 +68,7 @@ public class Game1 extends Game implements ApplicationListener {
 
         }
 
-/*
+  /*
        if(Gdx.input.isKeyPressed(Input.Keys.W)) {
             camera.translate(0,2);
         }
@@ -81,7 +81,7 @@ public class Game1 extends Game implements ApplicationListener {
         if(Gdx.input.isKeyPressed(Input.Keys.D)) {
             camera.translate(2,0);
         }
-  */
+*/
         player.update();
     }
 
@@ -94,7 +94,7 @@ public class Game1 extends Game implements ApplicationListener {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glViewport((int)glViewport.x, (int)glViewport.y, (int)glViewport.width, (int)glViewport.height);
         camera.update();
-        camera.apply(gl);
+        //camera.apply(gl);
 
         spriteBatch.enableBlending();
 

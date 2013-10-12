@@ -43,7 +43,7 @@ public class Map {
 
         mapReader = new TMXReader(Gdx.files.internal(GLOBAL.Map01).toString());
 
-        createTileSheet();
+        loadTileData();
     }
 
     public void render(SpriteBatch spriteBatch){
@@ -55,7 +55,7 @@ public class Map {
                 spriteBatch.begin();
 
                 spriteBatch.enableBlending();
-                spriteBatch.setColor(new Color(20,20,20,1f));
+                spriteBatch.setColor(new Color(20,20,20,.5f));
 
                 spriteBatch.setProjectionMatrix(Game1.camera.projection);
                 spriteBatch.draw(textures.get(map[y][x]), ((x * 32) + 160) - Game1.camera.position.x , ((y * 32) + 55) - Game1.camera.position.y);
