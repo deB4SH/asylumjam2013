@@ -1,11 +1,12 @@
 #Exclude
 !/libs/*.jar
 
+#Ignore in git
 *.class
-
-# Package Files #
-#*.jar
 *.war
 *.ear
 *.iml
 *.thumb
+
+#IntelliJ specific
+/out/*

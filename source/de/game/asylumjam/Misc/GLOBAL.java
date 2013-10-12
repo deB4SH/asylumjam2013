@@ -11,5 +11,7 @@ public class GLOBAL {
     public static int Door_Vertical = 3;
     public static int Door_Win = 4;
 
+    public static String Map01 = "Maps/01.xml";
+
 
 }
