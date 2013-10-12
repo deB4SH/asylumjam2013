@@ -1,6 +1,7 @@
 package de.game.asylumjam.World;
 
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import de.game.asylumjam.Game1;
@@ -45,9 +46,12 @@ public class Map {
             for(int y = 0; y < height; y++)
             {
                 spriteBatch.begin();
+
                 spriteBatch.enableBlending();
+
                 spriteBatch.setProjectionMatrix(Game1.camera.projection);
                 spriteBatch.draw(textures.get(map[y][x]), ((x * 32) + 160) - Game1.camera.position.x , ((y * 32) + 55) - Game1.camera.position.y);
+
                 spriteBatch.end();
             }
         }

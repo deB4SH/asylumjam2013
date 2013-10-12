@@ -60,24 +60,28 @@ public class Player extends Entity {
                 !collisionTest(new Vector2(super.getPosition().x + super.getTexture().getWidth()-1, super.getPosition().y -1)))
         {
             super.setPosition(super.getPosition().add(0,-1));
+            Game1.camera.translate(0,-1);
         }
 
         if(aPressed && !collisionTest(new Vector2(super.getPosition().x-1, super.getPosition().y )) &&
                 !collisionTest(new Vector2(super.getPosition().x-1, super.getPosition().y + super.getTexture().getHeight())))
         {
            super.setPosition(super.getPosition().add(-1,0));
+            Game1.camera.translate(-1,0);
         }
 
         if(wPressed && !collisionTest(new Vector2(super.getPosition().x +1, super.getPosition().y + super.getTexture().getHeight() +1)) &&
                 !collisionTest(new Vector2(super.getPosition().x + super.getTexture().getWidth() -1, super.getPosition().y + super.getTexture().getHeight() +1)))
         {
             super.setPosition(super.getPosition().add(0,+1));
+            Game1.camera.translate(0,1);
         }
 
         if(dPressed && !collisionTest(new Vector2(super.getPosition().x + super.getTexture().getWidth() + 1, super.getPosition().y )) &&
                 !collisionTest(new Vector2(super.getPosition().x + super.getTexture().getWidth() + 1, super.getPosition().y + super.getTexture().getHeight())))
         {
             super.setPosition(super.getPosition().add(+1,0));
+            Game1.camera.translate(1,0);
         }
     }
 

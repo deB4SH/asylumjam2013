@@ -9,7 +9,7 @@ public class Layer {
     private int[][] tileData;
     private String layerName;
 
-    public Layer(int height, int width, Attribute layerName)
+    public Layer(int height, int width, String layerName)
     {
         this.height = height;
         this.width = width;

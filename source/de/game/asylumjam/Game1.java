@@ -42,6 +42,7 @@ public class Game1 extends Game implements ApplicationListener {
 
         camera = new OrthographicCamera(width,height);
         camera.position.set(width / 2, height / 2, 0);
+        camera.zoom = 0.20f;
         glViewport = new Rectangle(0,0,width,height);
 
         map  = new Map();
