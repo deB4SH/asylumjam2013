@@ -2,7 +2,12 @@ package de.game.asylumjam.World;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.jdom2.Content;
+import org.jdom2.DataConversionException;
 import org.jdom2.Document;
+import org.jdom2.filter.ContentFilter;
+import org.jdom2.filter.Filter;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.Element;
 
@@ -37,20 +42,34 @@ public class TMXReader {
         //Get all Layers in the Tiled-XML-Export
         List<Element> Layer = doc.getRootElement().getChildren("layer");
 
-        int a = 0;
+        try{
+            for(Element e: Layer)
+            {
+                mapLayer.add(new Layer(e.getAttribute("height").getIntValue(),e.getAttribute("width").getIntValue(),e.getAttribute("name").toString()));
 
-        for(Element e: Layer)
-        {
-            mapLayer.add(new Layer(Integer.parseInt(e.getAttribute("height").toString()),Integer.parseInt(e.getAttribute("width").toString()),e.getAttribute("name")));
-
+                generateMapArray(e);
+            }
         }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        int a = 0;
 
     }
 
-    private int[][] generateMapArray(Element e)
-    {
+    private int[][] generateMapArray(Element e) throws DataConversionException {
 
+        Element Data = (Element)e.getContent(1);
+        int[][] storage = new int[e.getAttribute("height").getIntValue()][e.getAttribute("width").getIntValue()];
 
+        for(int i=0; i < Data.getContentSize(); i++)
+        {
+
+        }
+
+        int a = 0;
 
         return new int[5][5];
     }
