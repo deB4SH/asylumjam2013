@@ -10,7 +10,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import de.game.asylumjam.Entity.Player;
+import de.game.asylumjam.Misc.GLOBAL;
 import de.game.asylumjam.World.Map;
+import de.game.asylumjam.World.TMXReader;
 
 /**
  * Created with IntelliJ IDEA.
@@ -32,6 +34,7 @@ public class Game1 extends Game implements ApplicationListener {
     private Map map;
     private Player player;
 
+
     @Override
     public void create() {
         fpsLogger = new FPSLogger();
@@ -43,6 +46,9 @@ public class Game1 extends Game implements ApplicationListener {
 
         map  = new Map();
         player = new Player(new Vector2(200,200),100,map,new Texture("Texturen/player.png"));
+
+        TMXReader mapReader = new TMXReader(Gdx.files.internal(GLOBAL.Map01).toString());
+        mapReader.readXML();
 
     }
 
