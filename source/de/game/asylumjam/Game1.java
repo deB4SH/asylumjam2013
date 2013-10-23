@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.*;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import de.game.asylumjam.Entity.Player;
@@ -43,10 +44,11 @@ public class Game1 extends Game implements ApplicationListener {
         camera = new OrthographicCamera(width,height);
         camera.position.set(width / 2, height / 2, 0);
         //camera.zoom = 0.20f;
+        camera.setToOrtho(false);
         glViewport = new Rectangle(0,0,width,height);
 
         map  = new Map();
-        player = new Player(new Vector2(200,200),100,map,new Texture("Texturen/licht1.png"));
+        player = new Player(new Vector2(200,200),100,map,new Texture("Texturen/player.png"));
 
         TMXReader mapReader = new TMXReader(Gdx.files.internal(GLOBAL.Map01).toString());
 
@@ -61,7 +63,7 @@ public class Game1 extends Game implements ApplicationListener {
 
         if(Gdx.input.isKeyPressed(Input.Keys.Q)) {
             camera.zoom += 0.02;
-            camera.zoom = camera.zoom > 1 ? camera.zoom = 1.0f : camera.zoom;
+            camera.zoom = camera.zoom > 20 ? camera.zoom = 1.0f : camera.zoom;
         }
         if(Gdx.input.isKeyPressed(Input.Keys.E)) {
             camera.zoom -= 0.02;
@@ -89,18 +91,15 @@ public class Game1 extends Game implements ApplicationListener {
     public void render() {
         update();
 
-        GL10 gl = Gdx.graphics.getGL10();
         Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glViewport((int)glViewport.x, (int)glViewport.y, (int)glViewport.width, (int)glViewport.height);
         camera.update();
-        //camera.apply(gl);
 
         spriteBatch.enableBlending();
 
         map.render(spriteBatch);
         player.render(spriteBatch);
-
 
         spriteBatch.begin();
         spriteBatch.setProjectionMatrix(camera.projection);

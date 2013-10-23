@@ -2,16 +2,12 @@ package de.game.asylumjam.Entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.sun.prism.ps.Shader;
 import de.game.asylumjam.Game1;
 import de.game.asylumjam.Misc.GLOBAL;
 import de.game.asylumjam.World.Map;
@@ -20,44 +16,13 @@ public class Player extends Entity {
 
     private Map world;
 
-    String vertexShader = "attribute vec4 " + ShaderProgram.POSITION_ATTRIBUTE + ";\n" //
-            + "attribute vec4 " + ShaderProgram.COLOR_ATTRIBUTE + ";\n" //
-            + "attribute vec2 " + ShaderProgram.TEXCOORD_ATTRIBUTE + "0;\n" //
-            + "uniform mat4 u_projTrans;\n" //
-            + "varying vec4 v_color;\n" //
-            + "varying vec2 v_texCoords;\n" //
-            + "\n" //
-            + "void main()\n" //
-            + "{\n" //
-            + "   v_texCoords = " + ShaderProgram.TEXCOORD_ATTRIBUTE + "0;\n" //
-            + "   gl_Position =  u_projTrans * " + ShaderProgram.POSITION_ATTRIBUTE + ";\n" //
-            + "}\n";
-
-    String fragmentShader = "#ifdef GL_ES\n" //
-            + "#define LOWP lowp\n" //
-            + "precision mediump float;\n" //
-            + "#else\n" //
-            + "#define LOWP \n" //
-            + "#endif\n" //
-            + "varying vec2 v_texCoords;\n" //
-            + "uniform sampler2D u_texture;\n" //
-            + "uniform sampler2D u_texturePalette;\n" //
-            + "void main()\n"//
-            + "{\n" //
-            + " vec4 textureColor = texture2D(u_texture, v_texCoords).rgba;\n"
-            + " vec4 paletteColor = texture2D(u_texturePalette, vec2(textureColor.b,0)).rgba;\n"
-            + "  gl_FragColor = paletteColor;\n" //
-            + "}";
-
-    ShaderProgram shaderProgram = new ShaderProgram(vertexShader, fragmentShader);
-
-
     public Player(Vector2 startPos, int startHealth, Map map, Texture texture)
     {
         super.setPosition(startPos);
         super.setHealth(startHealth);
         this.world = map;
         super.setTexture(texture);
+        ShaderProgram.pedantic = false;
     }
 
     @Override
@@ -72,11 +37,8 @@ public class Player extends Entity {
         double v2 = (Gdx.input.getX()) - (getPosition().x + 160 );
         float rotation = (float)Math.toDegrees(Math.atan2( v1 ,v2 ));
 
-        spriteBatch.setShader(shaderProgram);
-
-
         spriteBatch.draw(super.getTexture(), getPosition().x - Game1.camera.position.x + 160, getPosition().y - Game1.camera.position.y + 55,
-                0,0,256,256,1,1,0,0,0,256,256,false,false);
+                16, 16, getTexture().getWidth(), getTexture().getHeight() ,1,1,rotation,0,0,32,32,false,false);
 
         spriteBatch.setShader(null);
 
@@ -135,12 +97,12 @@ public class Player extends Entity {
         //System.out.println("prüf den dreck " + tile.x + " " + tile.y);
         //System.out.println("hier steht der scheiß " + super.getPosition().x + " " + super.getPosition().y);
 
-        /*
-        if(this.world.getMap()[(int)calcTile(tile).y][(int)calcTile(tile).x] == 0)
+
+        /*if(this.world.getMap()[(int)calcTile(tile).y][(int)calcTile(tile).x] == 0)
             return true;   //player is allowed to move on this tile
         else
-            return false;    //player can not move on this tile
-            */
+            return false;    //player can not move on this tile */
+
 
         return false;
     }
