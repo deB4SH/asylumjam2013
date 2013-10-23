@@ -52,6 +52,7 @@ public class Map {
 
                     spriteBatch.end();
                 }
+				
             }
             */
 
