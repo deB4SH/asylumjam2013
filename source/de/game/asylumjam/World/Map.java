@@ -2,18 +2,20 @@ package de.game.asylumjam.World;
 
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import de.game.asylumjam.Game1;
 import de.game.asylumjam.Misc.GLOBAL;
+
 import java.util.ArrayList;
 
 public class Map {
 
-    private final int width = 15;
-    private final int height = 15;
-
+    private final int width = 10;
+    private final int height = 10;
 
     private TMXReader mapReader;
 
@@ -21,56 +23,66 @@ public class Map {
 
     public Map(){
 
-
-        mapReader = new TMXReader(Gdx.files.internal(GLOBAL.Map01).toString());
+        mapReader = new TMXReader(Gdx.files.internal(GLOBAL.MapTest).toString());
 
         createTileSheet();
     }
 
     public void render(SpriteBatch spriteBatch){
 
-        spriteBatch.begin();
-
         for(Layer e: mapReader.getMapLayer())
         {
-            //System.out.println(e.getLayerName());
+            System.out.println(e.getLayerName());
 
+            /*
             for(int x = 0; x < width; x++)
             {
                 for(int y = 0; y < height; y++)
                 {
+                    spriteBatch.begin();
 
                     //spriteBatch.enableBlending();
                     //spriteBatch.setColor(new Color(20,20,20,1f));
 
                     spriteBatch.setProjectionMatrix(Game1.camera.projection);
+                    System.out.println(e.getSingleTile(x,y));
                     spriteBatch.draw(textures.get(e.getSingleTile(x,y)), ((x * 32) + 160) - Game1.camera.position.x , ((y * 32) + 55) - Game1.camera.position.y);
-                    //spriteBatch.setColor(Color.WHITE);
+                    spriteBatch.setColor(Color.WHITE);
 
+                    spriteBatch.end();
+                }
+            }
+            */
 
+            int textureId = 0;
+            for(int i=0; i < 128/32-1; i++)
+            {
+                for(int j=0; j < 128/32-1; j++)
+                {
+                    spriteBatch.begin();
+                        spriteBatch.draw(textures.get(textureId),i*32,j*32);
+                        textureId++;
+                    spriteBatch.end();
                 }
             }
         }
-
-        spriteBatch.end();
     }
 
 
     private void createTileSheet()
     {
         TextureRegion tileSetRegion = new TextureRegion(new Texture("Texturen/tileset.png"),128,128);
+        textures.add(new Texture("Texturen/black_tile.png"));
 
-
-        for(int x=GLOBAL.TilesPerLane; x > 0; x--)
+        for(int x=0; x < GLOBAL.TilesPerLane; x++)
         {
-            for(int y=GLOBAL.TilesVertical; y > 0; y--)
+            for(int y=0; y < GLOBAL.TilesVertical; y++)
             {
                 tileSetRegion.setRegion(x*32,y*32,32,32);
 
                 textures.add(tileSetRegion.getTexture());
             }
         }
-        textures.add(new Texture("Texturen/black_tile.png"));
     }
 
     public void loadTileData()
