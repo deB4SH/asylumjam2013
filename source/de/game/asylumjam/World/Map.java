@@ -14,8 +14,8 @@ import java.util.ArrayList;
 
 public class Map {
 
-    private final int width = 15;
-    private final int height = 15;
+    private final int width = 10;
+    private final int height = 10;
 
     private TMXReader mapReader;
 
@@ -23,7 +23,7 @@ public class Map {
 
     public Map(){
 
-        mapReader = new TMXReader(Gdx.files.internal(GLOBAL.Map01).toString());
+        mapReader = new TMXReader(Gdx.files.internal(GLOBAL.MapTest).toString());
 
         createTileSheet();
     }
@@ -34,6 +34,7 @@ public class Map {
         {
             System.out.println(e.getLayerName());
 
+            /*
             for(int x = 0; x < width; x++)
             {
                 for(int y = 0; y < height; y++)
@@ -44,9 +45,23 @@ public class Map {
                     //spriteBatch.setColor(new Color(20,20,20,1f));
 
                     spriteBatch.setProjectionMatrix(Game1.camera.projection);
+                    System.out.println(e.getSingleTile(x,y));
                     spriteBatch.draw(textures.get(e.getSingleTile(x,y)), ((x * 32) + 160) - Game1.camera.position.x , ((y * 32) + 55) - Game1.camera.position.y);
                     spriteBatch.setColor(Color.WHITE);
 
+                    spriteBatch.end();
+                }
+            }
+            */
+
+            int textureId = 0;
+            for(int i=0; i < 128/32-1; i++)
+            {
+                for(int j=0; j < 128/32-1; j++)
+                {
+                    spriteBatch.begin();
+                        spriteBatch.draw(textures.get(textureId),i*32,j*32);
+                        textureId++;
                     spriteBatch.end();
                 }
             }
