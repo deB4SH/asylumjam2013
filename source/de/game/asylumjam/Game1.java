@@ -50,7 +50,7 @@ public class Game1 extends Game implements ApplicationListener {
         map  = new Map();
         player = new Player(new Vector2(200,200),100,map,new Texture("Texturen/player.png"));
 
-        TMXReader mapReader = new TMXReader(Gdx.files.internal(GLOBAL.Map01).toString());
+        TMXReader mapReader = new TMXReader(Gdx.files.internal(GLOBAL.MapTest).toString());
 
     }
 

@@ -25,14 +25,15 @@ public class Map {
 
         mapReader = new TMXReader(Gdx.files.internal(GLOBAL.MapTest).toString());
 
-        createTileSheet();
+        //createTileSheet();
+        loadTileData();
     }
 
     public void render(SpriteBatch spriteBatch){
 
         for(Layer e: mapReader.getMapLayer())
         {
-            System.out.println(e.getLayerName());
+            //System.out.println(e.getLayerName());
 
             /*
             for(int x = 0; x < width; x++)
@@ -54,14 +55,14 @@ public class Map {
             }
             */
 
-            int textureId = 0;
-            for(int i=0; i < 128/32-1; i++)
+
+            for(int i=0; i < width; i++)
             {
-                for(int j=0; j < 128/32-1; j++)
+                for(int j=0; j < height; j++)
                 {
                     spriteBatch.begin();
-                        spriteBatch.draw(textures.get(textureId),i*32,j*32);
-                        textureId++;
+                    spriteBatch.setProjectionMatrix(Game1.camera.projection);
+                    spriteBatch.draw(textures.get(mapReader.getMapLayer().get(0).getSingleTile(i,j)),i*32-Game1.camera.position.x +160,j*32-Game1.camera.position.y + 55);
                     spriteBatch.end();
                 }
             }
@@ -69,31 +70,53 @@ public class Map {
     }
 
 
-    private void createTileSheet()
+    /*private void createTileSheet()
     {
         TextureRegion tileSetRegion = new TextureRegion(new Texture("Texturen/tileset.png"),128,128);
+
         textures.add(new Texture("Texturen/black_tile.png"));
 
-        for(int x=0; x < GLOBAL.TilesPerLane; x++)
-        {
-            for(int y=0; y < GLOBAL.TilesVertical; y++)
-            {
-                tileSetRegion.setRegion(x*32,y*32,32,32);
+        TextureRegion[][] textureRegions = tileSetRegion.split(32,32);
 
-                textures.add(tileSetRegion.getTexture());
+        for(int x=3; x >= 0; x--)
+        {
+            for(int y=3; y >= 0; y--)
+            {
+                //tileSetRegion.setRegion(x/32,y/32,32,32);
+
+                textures.add(textureRegions[x][y].getTexture());
             }
         }
-    }
+        int i = 0;
+    } */
 
     public void loadTileData()
     {
         try
-        {
-            textures.add(GLOBAL.Wall,new Texture("Texturen/wall.png"));
-            textures.add(GLOBAL.Floor,new Texture("Texturen/floor.png"));
-            textures.add(GLOBAL.Door_Horizontal,new Texture("Texturen/door_horizontal.png"));
-            textures.add(GLOBAL.Door_Vertical, new Texture("Texturen/door_vertical.png"));
-            textures.add(GLOBAL.Door_Win, new Texture("Texturen/door_win.png"));
+        {   // 0
+            textures.add(new Texture("Texturen/black_tile.png"));
+
+            //1 +
+            textures.add(new Texture("Texturen/floor.png"));
+            textures.add(new Texture("Texturen/door_vertical.png"));
+            textures.add(new Texture("Texturen/wall.png"));
+            textures.add(new Texture("Texturen/black_tile.png"));
+
+            textures.add(new Texture("Texturen/wall.png"));
+            textures.add(new Texture("Texturen/door_horizontal.png"));
+            textures.add(new Texture("Texturen/black_tile.png"));
+            textures.add(new Texture("Texturen/black_tile.png"));
+
+            textures.add(new Texture("Texturen/wall.png"));
+            textures.add(new Texture("Texturen/black_tile.png"));
+            textures.add(new Texture("Texturen/black_tile.png"));
+            textures.add(new Texture("Texturen/black_tile.png"));
+
+            textures.add(new Texture("Texturen/floor.png"));
+            textures.add(new Texture("Texturen/black_tile.png"));
+            textures.add(new Texture("Texturen/black_tile.png"));
+            textures.add(new Texture("Texturen/black_tile.png"));
+
         }
         catch(Exception e)
         {

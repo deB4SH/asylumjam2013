@@ -14,7 +14,7 @@ public class GLOBAL {
     public static int Door_Win = 4;
 
     public static String MapTest = "Maps/testing_map.tmx";
-    public static String Map01 = "Maps/01.xml";
+    //public static String Map01 = "Maps/01.xml";
 
 
 
