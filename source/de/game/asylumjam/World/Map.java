@@ -51,8 +51,7 @@ public class Map {
                     spriteBatch.setColor(Color.WHITE);
 
                     spriteBatch.end();
-                }
-				
+                }	
             }
             */
 
