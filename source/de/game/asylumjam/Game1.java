@@ -42,15 +42,13 @@ public class Game1 extends Game implements ApplicationListener {
         spriteBatch = new SpriteBatch();
 
         camera = new OrthographicCamera(width,height);
-        camera.position.set(width / 2, height / 2, 0);
+        camera.position.set(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight() /2, 0);
         //camera.zoom = 0.20f;
         camera.setToOrtho(false);
         glViewport = new Rectangle(0,0,width,height);
 
         map  = new Map();
         player = new Player(new Vector2(200,200),100,map,new Texture("Texturen/player.png"));
-
-        TMXReader mapReader = new TMXReader(Gdx.files.internal(GLOBAL.MapTest).toString());
 
     }
 
@@ -70,21 +68,7 @@ public class Game1 extends Game implements ApplicationListener {
 
         }
 
-  /*
-       if(Gdx.input.isKeyPressed(Input.Keys.W)) {
-            camera.translate(0,2);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-            camera.translate(-2,0);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.S)) {
-            camera.translate(0,-2);
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.D)) {
-            camera.translate(2,0);
-        }
-*/
-        player.update();
+     player.update();
     }
 
     @Override
@@ -96,18 +80,17 @@ public class Game1 extends Game implements ApplicationListener {
         Gdx.gl.glViewport((int)glViewport.x, (int)glViewport.y, (int)glViewport.width, (int)glViewport.height);
         camera.update();
 
-        spriteBatch.enableBlending();
-
         map.render(spriteBatch);
         player.render(spriteBatch);
 
         spriteBatch.begin();
-        spriteBatch.setProjectionMatrix(camera.projection);
+        //spriteBatch.setProjectionMatrix(camera.combined);
+
 
         CharSequence text = "" + Gdx.input.getX() + " " + Gdx.input.getY();
         BitmapFont font = new BitmapFont();
         font.setColor(255,0,0,1);
-        font.draw(spriteBatch, text, Gdx.input.getX() + 20 - camera.position.x,(-Gdx.input.getY())+ camera.position.y);
+        font.draw(spriteBatch, text, Gdx.input.getX() + 20 ,(-Gdx.input.getY()));
         spriteBatch.end();
 
         fpsLogger.log();
