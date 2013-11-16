@@ -8,6 +8,13 @@ For 100% this will be a post-jam completion. Thats the reason why we wont try to
 You also are allowed to help us on damn issues and silly things. 
 
 
+Status
+=============
+
+Its currently on ice :(
+We dont have enough time to end up this game. Maybe around the christmas days.
+
+
 What Tools are we using?
 =============
 IDE     : IntelliJ , Eclipse
